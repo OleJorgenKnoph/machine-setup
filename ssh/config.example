@@ -1,0 +1,13 @@
+Host *
+  AddKeysToAgent yes
+  ServerAliveInterval 60
+  ServerAliveCountMax 3
+
+  PubkeyAcceptedKeyTypes ssh-ed25519,ecdsa-sha2-nistp256,ssh-rsa
+  HostkeyAlgorithms ssh-ed25519,ecdsa-sha2-nistp256,ssh-rsa
+
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed**** # ENDRE til din fil
+  IdentitiesOnly yes

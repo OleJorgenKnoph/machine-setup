@@ -1,0 +1,22 @@
+[user]
+	email = ole-jorgen@live.no
+	name = Ole-Jørgen Knoph
+[alias]
+	st = status
+	co = checkout
+	cob = checkout -b
+	ci = commit
+	br = branch
+	clean-merged-branches = !git branch --merged | egrep -v '\\*|main|master|develop' | xargs git branch -d
+	lg = log --oneline --graph --decorate
+	reset-hard-remote-head = !git fetch && git reset --hard @{u}
+[init]
+    defaultBranch = main
+[push]
+    default = simple
+[pull]
+    rebase = false
+[rerere]
+    enabled = true
+[core]	
+	editor = idea -w

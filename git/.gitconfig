@@ -1,22 +1,40 @@
 [user]
-	email = ole-jorgen@live.no
-	name = Ole-Jørgen Knoph
+	# Sett inn ditt navn og e-post (gjøres automatisk av setup.sh)
+	email = YOUR_EMAIL
+	name = YOUR_NAME
+
 [alias]
-	st = status
-	co = checkout
-	cob = checkout -b
-	ci = commit
-	br = branch
+	st = status                          # Rask statussjekk
+	co = checkout                        # Bytt branch
+	cob = checkout -b                    # Lag og bytt til ny branch
+	ci = commit                          # Commit
+	br = branch                          # List branches
+
+	# Slett lokale branches som er merget inn (unntatt main/master/develop)
 	clean-merged-branches = !git branch --merged | egrep -v '\\*|main|master|develop' | xargs git branch -d
+
+	# Kompakt logg med graf og dekorasjoner
 	lg = log --oneline --graph --decorate
+
+	# Hent og tilbakestill til remote HEAD (nyttig når du vil forkaste lokale endringer)
 	reset-hard-remote-head = !git fetch && git reset --hard @{u}
+
 [init]
-    defaultBranch = main
+	defaultBranch = main
+
 [push]
-    default = simple
+	# Pusher bare gjeldende branch (ikke alle branches)
+	default = simple
+
 [pull]
-    rebase = true
+	# Rebase i stedet for merge ved pull → lineær historikk
+	rebase = true
+
 [rerere]
-    enabled = true
-[core]	
+	# Husk løsninger på konflikter og gjenbruk dem automatisk
+	enabled = true
+
+[core]
+	# Foretrukket editor for commit-meldinger, rebase osv.
+	# Bytt til f.eks. "code --wait" for VS Code eller "vim" for Vim
 	editor = idea -w

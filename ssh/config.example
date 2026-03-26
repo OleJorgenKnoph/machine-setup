@@ -1,13 +1,25 @@
+# SSH-konfigurasjon for utviklingsmaskiner
+# Kopier denne filen til ~/.ssh/config og tilpass til dine behov
+
+# ─── Globale innstillinger (gjelder alle verter) ──────────────────────────────
 Host *
+  # Legg automatisk til nøkler i SSH-agenten ved første bruk
   AddKeysToAgent yes
+
+  # Send keep-alive-signal hvert 60. sekund for å forhindre at idle-tilkoblinger droppes
   ServerAliveInterval 60
+  # Avslutt tilkoblingen etter 3 ubesvarte keep-alive-signaler (dvs. etter ~3 min)
   ServerAliveCountMax 3
 
+  # Prioriter moderne og sikre nøkkeltyper (ed25519 > ecdsa > rsa)
   PubkeyAcceptedKeyTypes ssh-ed25519,ecdsa-sha2-nistp256,ssh-rsa
   HostkeyAlgorithms ssh-ed25519,ecdsa-sha2-nistp256,ssh-rsa
 
+# ─── GitHub ───────────────────────────────────────────────────────────────────
 Host github.com
   HostName github.com
   User git
-  IdentityFile ~/.ssh/id_ed**** # ENDRE til din fil
+  # Bytt YOUR_SSH_KEY med filnavnet på din faktiske SSH-nøkkel, f.eks. id_ed25519
+  IdentityFile ~/.ssh/YOUR_SSH_KEY
+  # Bruk kun den spesifiserte nøkkelen (ikke prøv andre fra agenten)
   IdentitiesOnly yes
